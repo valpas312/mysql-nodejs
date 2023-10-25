@@ -12,7 +12,7 @@ app.listen(PORT, () => {
 });
 
 // Routes
-app.use("/", indexRoutes);
+app.use("/index", indexRoutes);
 app.use("/api", employeesRoutes);
 
 app.use((req, res, next) => {
