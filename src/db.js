@@ -17,6 +17,4 @@ const pool = createPool({
     port: PORT,
 });
 
-pool.getConnection()
-
 export default pool;
