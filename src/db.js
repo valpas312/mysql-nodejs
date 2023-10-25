@@ -1,5 +1,5 @@
 //Creacion de la base de datos
-import { createPool } from "mysql2";
+import { createPool } from "mysql2/promise.js";
 import {
     DB_HOST,
     DB_USER,
