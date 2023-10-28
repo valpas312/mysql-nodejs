@@ -67,3 +67,17 @@ export const updateEmployeeById = async (req, res) => {
 
   res.json({ message: `Employee with id ${id} updated successfully` });
 };
+
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  const [rows] = await pool.query("select * from user where email = ? and password = ?", [email, password]);
+
+  if (rows.length === 0) {
+    return res
+      .status(404)
+      .json({ message: `User with email ${email} does not exists` });
+  }
+
+  res.json(rows);
+};
