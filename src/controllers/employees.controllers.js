@@ -71,7 +71,7 @@ export const updateEmployeeById = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  const [rows] = await pool.query("select * from user where email = ? and password = ?", [email, password]);
+  const [rows] = await pool.query("select * from employee where email = ? and password = ?", [email, password]);
 
   if (rows.length === 0) {
     return res
