@@ -8,8 +8,8 @@ import { PORT } from "./config.js"
 const app = express();
 
 // Middlewares
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.listen(PORT, () => {
   console.log("Server running on port" + PORT);
