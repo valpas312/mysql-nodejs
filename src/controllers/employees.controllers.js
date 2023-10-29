@@ -71,6 +71,11 @@ export const updateEmployeeById = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).send("Content not valid");
+  }
+
   const [rows] = await pool.query("select * from employee where email = ? and password = ?", [email, password]);
 
   if (rows.length === 0) {
@@ -80,4 +85,19 @@ export const login = async (req, res) => {
   }
 
   res.json(rows);
+};
+
+export const register = async (req, res) => {
+  const { name, email, password, salary } = req.body;
+
+  if (!name || !email || !password || !salary) {
+    return res.status(400).send("Content not valid");
+  }
+
+  const [rows] = await pool.query(
+    "insert into employee (name, email, password, salary) values (?,?,?,?)",
+    [name, email, password, salary]
+  );
+
+  res.json({ id: rows.insertId, name, email, password, salary });
 };
